@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AddUserForm from '../users/addUserForm';
 import { addUser } from '../../ducks/users';
@@ -10,6 +10,7 @@ class AdminPage extends Component {
 	handleAddUser = newUser => this.props.addUser(newUser);
 
 	render() {
+		if (!this.props.user) return <Redirect to="auth/sign-in" />;
 		return (
 			<div>
 				<h1>Admin page</h1>
@@ -23,6 +24,6 @@ class AdminPage extends Component {
 }
 
 export default connect(
-	null,
+	state => ({ user: state.auth.user }),
 	{ addUser }
 )(AdminPage);
