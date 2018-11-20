@@ -1,5 +1,6 @@
 import { appName } from '../config';
 import { Record } from 'immutable';
+import { reset } from 'redux-form';
 
 /**
  * Constants
@@ -39,9 +40,11 @@ export default function reducer(state = new ReducerRecord(), action) {
  * Action Creators
  * */
 export function addUser(user) {
-	return dispatch =>
+	return dispatch => {
+		dispatch(reset('addUser'));
 		dispatch({
 			type: ADD_USER_SUCCESS,
 			payload: { user },
 		});
+	};
 }
