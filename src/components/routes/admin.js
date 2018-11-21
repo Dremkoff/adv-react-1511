@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { NavLink, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AddUserForm from '../users/addUserForm';
 import { addUser } from '../../ducks/users';
@@ -13,6 +13,9 @@ class AdminPage extends Component {
 		if (!this.props.user) return <Redirect to="auth/sign-in" />;
 		return (
 			<div>
+				<NavLink to="/admin/user-managment" activeStyle={{ color: 'red' }}>
+					Add User
+				</NavLink>
 				<h1>Admin page</h1>
 				<Route
 					path="/admin/user-managment"
